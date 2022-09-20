@@ -11,6 +11,7 @@ import {
   LabelAndInputContainer,
   CheckBoxContainer,
   LoginButton,
+  ErrorMsg,
 } from './styledComponent'
 
 import ThemeContext from '../../context/ThemeContext'
@@ -54,8 +55,12 @@ class Login extends Component {
     this.setState({password: event.target.value})
   }
 
+  onClickShowPassword = event => {
+    console.log(event.target.value)
+  }
+
   render() {
-    const {showErrorMsg, errorMsg} = this.state
+    const {showErrorMsg, errorMsg, username, password} = this.state
     const jwtToken = Cookies.get('jwt_token')
     if (jwtToken !== undefined) {
       return <Redirect to="/" />
@@ -64,18 +69,17 @@ class Login extends Component {
       <ThemeContext.Consumer>
         {value => {
           const {isDark} = value
-          const status = isDark ? 'true' : 'false'
 
           return (
-            <LoginContainer mode={status}>
-              <FormContainer mode={status} onSubmit={this.onSubmitFormDetails}>
-                {status ? (
+            <LoginContainer mode={isDark}>
+              <FormContainer mode={isDark} onSubmit={this.onSubmitFormDetails}>
+                {isDark ? (
                   <ImageLogo src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png" />
                 ) : (
                   <ImageLogo src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png" />
                 )}
                 <LabelAndInputContainer>
-                  <Label htmlFor="username" mode={status}>
+                  <Label htmlFor="username" mode={isDark}>
                     USERNAME
                   </Label>
                   <Input
@@ -84,10 +88,11 @@ class Login extends Component {
                     width="100%"
                     id="username"
                     onChange={this.onChangeUserInput}
+                    value={username}
                   />
                 </LabelAndInputContainer>
                 <LabelAndInputContainer>
-                  <Label htmlFor="password" mode={status}>
+                  <Label htmlFor="password" mode={isDark}>
                     PASSWORD
                   </Label>
                   <Input
@@ -96,16 +101,22 @@ class Login extends Component {
                     width="100%"
                     id="password"
                     onChange={this.onChangePassword}
+                    value={password}
                   />
                 </LabelAndInputContainer>
                 <CheckBoxContainer>
-                  <Input type="checkbox" size="20px" id="checkbox" />
-                  <Label htmlFor="checkbox" mode={status}>
+                  <Input
+                    type="checkbox"
+                    size="20px"
+                    id="checkbox"
+                    onClick={this.onClickShowPassword}
+                  />
+                  <Label htmlFor="checkbox" mode={isDark}>
                     Show Password
                   </Label>
                 </CheckBoxContainer>
                 <LoginButton type="submit">Login</LoginButton>
-                {showErrorMsg && <p className="error-msg">{errorMsg}</p>}
+                {showErrorMsg && <ErrorMsg>{errorMsg}</ErrorMsg>}
               </FormContainer>
             </LoginContainer>
           )

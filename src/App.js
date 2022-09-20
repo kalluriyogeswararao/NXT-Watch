@@ -8,7 +8,7 @@ import ProtectedRoute from './components/ProtectedRoute'
 import './App.css'
 
 class App extends Component {
-  state = {isDark: false}
+  state = {isDark: true}
 
   changeTheme = () => {
     this.setState(prevState => ({isDark: !prevState.isDark}))

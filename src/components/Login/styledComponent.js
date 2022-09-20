@@ -1,12 +1,15 @@
 import styled from 'styled-components'
 
 export const LoginContainer = styled.div`
-  background-color: ${props => (props.mode ? '#212121' : '#f9f9f9')};
+  background-color: ${props => (props.mode ? '#212121' : '#f8fafc')};
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  @media screen and (max-width: 768px) {
+    padding: 40px;
+  }
 `
 export const FormContainer = styled.form`
   background-color: ${props => (props.mode ? '#0f0f0f' : '#f9f9f9')};
@@ -17,7 +20,10 @@ export const FormContainer = styled.form`
   border-radius: 15px;
   width: 450px;
   padding: 40px;
-  box-shadow: ${props => (props.mode ? null : '0px 10px 20px 0px #e2e8f0')};
+  box-shadow: ${props => (props.mode ? null : '0px 10px 20px 10px #e2e8f0')};
+  @media screen and (max-width: 768px) {
+    width: 370px;
+  }
 `
 export const ImageLogo = styled.img`
   width: 200px;
@@ -62,4 +68,9 @@ export const LoginButton = styled.button`
   font-size: 17px;
   border: none;
   outline: none;
+`
+export const ErrorMsg = styled.p`
+  color: #ff0000;
+  font-family: 'Roboto';
+  font-size: 15px;
 `
