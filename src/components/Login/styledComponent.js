@@ -1,22 +1,23 @@
 import styled from 'styled-components'
 
 export const LoginContainer = styled.div`
-  background-color: ${props => (props.mode ? '#0f0f0f' : '#f9f9f9')};
+  background-color: ${props => (props.mode ? '#212121' : '#f9f9f9')};
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 `
-export const FormContainer = styled.div`
-  background-color: ${props => (props.mode ? '#424242' : '#f9f9f9')};
+export const FormContainer = styled.form`
+  background-color: ${props => (props.mode ? '#0f0f0f' : '#f9f9f9')};
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  border-radius: 15px;
   width: 450px;
   padding: 40px;
-  box-shadow: 0px 10px 20px 0px ${props => (props.mode ? null : '#e2e8f0')};
+  box-shadow: ${props => (props.mode ? null : '0px 10px 20px 0px #e2e8f0')};
 `
 export const ImageLogo = styled.img`
   width: 200px;
@@ -24,10 +25,11 @@ export const ImageLogo = styled.img`
 `
 export const Label = styled.label`
   font-family: 'Roboto';
-  font-size: 15px;
-  color: #64748b;
-  font-weight: 600;
-  margin-bottom: 5px;
+  font-size: 13px;
+  color: ${props => (props.mode ? '#ffffff' : '#64748b')};
+  font-weight: 550;
+  margin-bottom: 7px;
+  cursor: pointer;
 `
 export const Input = styled.input`
   width: ${props => props.width};
@@ -36,7 +38,7 @@ export const Input = styled.input`
   outline: none;
   font-size: 15px;
   border-radius: 2px;
-  margin-bottom: 5px;
+  margin-bottom: 7px;
 `
 export const LabelAndInputContainer = styled.div`
   display: flex;
