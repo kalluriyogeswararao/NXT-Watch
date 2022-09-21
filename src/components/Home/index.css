@@ -103,3 +103,10 @@
 .retry-btn {
   cursor: pointer;
 }
+
+@media screen and (max-width: 768px) {
+  .input-container {
+    width: 95%;
+    margin-right: 20px;
+  }
+}

@@ -47,3 +47,41 @@
   align-items: center;
   margin-top: 30px;
 }
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+}
+
+.website-logo {
+  width: 150px;
+  margin-left: 15px;
+}
+
+.profile {
+  width: 20px;
+  height: 20px;
+}
+.sun-icon {
+  font-size: 30px;
+  margin-top: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .website-logo {
+    width: 125px;
+    margin-left: 10px;
+  }
+  .profile {
+    display: none;
+  }
+  .sun-icon {
+    margin-right: 10px;
+  }
+  .large-screen-container {
+    display: none;
+  }
+}
+.small-screen-container {
+  display: none;
+}

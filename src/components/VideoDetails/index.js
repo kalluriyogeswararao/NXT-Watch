@@ -7,7 +7,7 @@ import {formatDistanceToNow} from 'date-fns'
 import ReactPlayer from 'react-player'
 import SideBar from '../SideBar'
 import Navbar from '../Navbar'
-import {HomeContainer, Title} from './styledComponent'
+import {HomeContainer, Title, LikeAndDislikeButton} from './styledComponent'
 import ThemeContext from '../../context/ThemeContext'
 import './index.css'
 
@@ -22,6 +22,9 @@ class VideoDetails extends Component {
   state = {
     apiStatus: apiStatusConstraints.initial,
     videoList: {},
+    isLike: false,
+    isDislike: false,
+    isSaveVideo: false,
   }
 
   componentDidMount() {
@@ -69,6 +72,14 @@ class VideoDetails extends Component {
     }
   }
 
+  onClickLikeButton = () => {
+    this.setState({isLike: true, isDislike: false})
+  }
+
+  onClickDislikeButton = () => {
+    this.setState({isDislike: true, isLike: false})
+  }
+
   onRenderInprogress = () => (
     <div className="loader-container">
       <Loader type="ThreeDots" color="#ffffff" height="40" width="40" />
@@ -76,7 +87,7 @@ class VideoDetails extends Component {
   )
 
   onRenderSuccessVideo = () => {
-    const {videoList} = this.state
+    const {videoList, isLike, isDislike} = this.state
     const {
       id,
       title,
@@ -89,6 +100,8 @@ class VideoDetails extends Component {
     } = videoList
     const {profileImageUrl, subscriberCount, name} = channel
     const date = formatDistanceToNow(new Date(publishedAt))
+
+    const onSaveVideoButton = () => {}
 
     return (
       <div className="video-item-container">
@@ -103,28 +116,41 @@ class VideoDetails extends Component {
             </div>
             <div className="like-main-container">
               <div className="like-container">
-                <button type="button" className="like-button">
+                <LikeAndDislikeButton
+                  type="button"
+                  onClick={this.onClickLikeButton}
+                  like={isLike}
+                >
                   <BiLike className="like-icon" />
-                </button>
-                <p className="like-icon-name">Like</p>
+                  <p className="like-icon-name">Like</p>
+                </LikeAndDislikeButton>
               </div>
               <div className="dislike-container">
-                <button type="button" className="like-button">
+                <LikeAndDislikeButton
+                  type="button"
+                  onClick={this.onClickDislikeButton}
+                  like={isDislike}
+                >
                   <BiDislike className="like-icon" />
-                </button>
-                <p className="like-icon-name">Dislike</p>
+                  <p className="like-icon-name">Dislike</p>
+                </LikeAndDislikeButton>
               </div>
               <div className="dislike-container">
-                <button type="button" className="like-button">
+                <LikeAndDislikeButton type="button" onClick={onSaveVideoButton}>
                   <MdPlaylistAdd className="like-icon" />
-                </button>
-                <p className="like-icon-name">Save</p>
+                  <p className="like-icon-name">Save</p>
+                </LikeAndDislikeButton>
               </div>
             </div>
           </div>
           <hr className="hr-line" />
-          <div>
+          <div className="subscriber-container">
             <img src={profileImageUrl} alt="profile" className="profile" />
+            <div>
+              <Title>{name}</Title>
+              <p className="channel-name">{subscriberCount} subscribers</p>
+              <Title>{description}</Title>
+            </div>
           </div>
         </div>
       </div>

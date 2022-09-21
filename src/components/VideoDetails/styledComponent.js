@@ -9,6 +9,14 @@ export const HomeContainer = styled.div`
 export const Title = styled.div`
   color: #ffffff;
   font-family: 'Roboto';
-  font-size: 18px;
-  margin-top: 30px;
+  font-size: 15px;
+`
+export const LikeAndDislikeButton = styled.button`
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: ${props => (props.like ? '#3b82f6' : '#616e7c')};
+  display: flex;
+  align-items: center;
 `

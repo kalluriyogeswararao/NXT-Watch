@@ -29,13 +29,11 @@
 }
 
 .like-icon {
-  color: #616e7c;
   font-size: 22px;
   margin-right: 5px;
 }
 
 .like-icon-name {
-  color: #616e7c;
   font-size: 15px;
   font-family: 'roboto';
   font-weight: 550;
@@ -67,4 +65,22 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.profile {
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
+}
+
+.subscriber-container {
+  display: flex;
+  margin-top: 30px;
+}
+
+.channel-name {
+  color: #616e7c;
+  font-size: 15px;
+  font-family: 'roboto';
+  margin-bottom: 30px;
 }

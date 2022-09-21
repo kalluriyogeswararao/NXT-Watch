@@ -73,4 +73,5 @@ export const ErrorMsg = styled.p`
   color: #ff0000;
   font-family: 'Roboto';
   font-size: 15px;
+  margin-top: 20px;
 `

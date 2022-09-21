@@ -6,8 +6,8 @@ export const HomeContainer = styled.div`
   width: 100vw;
 `
 export const VideosContainer = styled.div`
-  padding-left: 20px;
-  padding-top: 20px;
+  padding: 20px;
+
   width: 100%;
   background-color: ${props => (props.mode ? '#000000' : '#f8fafc')};
 `

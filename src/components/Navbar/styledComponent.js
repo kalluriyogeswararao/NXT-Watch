@@ -5,19 +5,13 @@ export const NavbarContainer = styled.div`
   background-color: ${props => (props.mode ? '#212121' : '#f8fafc')};
   align-items: center;
   justify-content: space-between;
-  padding: 8px;
-`
-
-export const Image = styled.img`
-  width: ${props => props.width};
-  padding-left: ${props => props.pad};
-  display:${props => props.show};
-  @media screen and (min-width: 768px) {
-    display: block;
-  }
-
+  padding: 18px;
+  width: 100vw;
+  @media screen and (max-width: 768px) {
+    width: 100%;
   }
 `
+
 export const PopupContainer = styled.div`
   display: flex;
   align-items: center;
@@ -28,6 +22,9 @@ export const PopupContainer = styled.div`
   border-radius: 5px;
   padding: 5px;
   background-color: #212121;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
 `
 
 export const CustomButton = styled.button`
@@ -57,5 +54,4 @@ export const ThemeButton = styled.button`
   font-size: 30px;
   margin-right: 30px;
   cursor: pointer;
-  padding: 0;
 `
