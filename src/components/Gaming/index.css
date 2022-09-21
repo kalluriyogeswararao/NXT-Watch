@@ -30,6 +30,7 @@
 
 .gaming-top-container {
   padding: 20px;
+  width: 100%;
 }
 .loader-container {
   display: flex;

@@ -46,7 +46,7 @@ class Gaming extends Component {
         thumbnailUrl: eachVideo.thumbnail_url,
         viewCount: eachVideo.view_count,
       }))
-      console.log(updatedData)
+
       this.setState({
         videoList: updatedData,
         apiStatus: apiStatusConstraints.success,
