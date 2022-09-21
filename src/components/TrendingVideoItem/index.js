@@ -14,7 +14,7 @@ const TrendingVideoItem = props => {
     viewCount,
     publishedAt,
   } = videoDetails
-  const {name, profileImageUrl} = channel
+  const {name} = channel
   const date = formatDistanceToNow(new Date(publishedAt))
 
   return (

@@ -1,5 +1,6 @@
 import {Link} from 'react-router-dom'
-import {AiFillHome, AiOutlineFire} from 'react-icons/ai'
+import {AiFillHome} from 'react-icons/ai'
+import {HiFire} from 'react-icons/hi'
 import {IoLogoGameControllerB} from 'react-icons/io'
 import {MdPlaylistAdd} from 'react-icons/md'
 import {SideBarContainer, NavLinks, SelectPageButton} from './styledComponent'
@@ -22,7 +23,7 @@ const SideBar = () => (
           </Link>
           <Link to="/trending" className="link">
             <SelectPageButton mode={isDark}>
-              <AiOutlineFire className="icons" />
+              <HiFire className="icons" />
               <NavLinks mode={isDark}>Trending</NavLinks>
             </SelectPageButton>
           </Link>
