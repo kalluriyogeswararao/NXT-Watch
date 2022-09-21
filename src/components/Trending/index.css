@@ -1,0 +1,21 @@
+.failure-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.oops-error {
+  font-size: 30px;
+  color: #ffffff;
+  font-family: 'roboto';
+}
+
+.failure-error-msg {
+  font-size: 18px;
+  color: #ffffff;
+  font-family: 'roboto';
+}
+.retry-btn {
+  cursor: pointer;
+}

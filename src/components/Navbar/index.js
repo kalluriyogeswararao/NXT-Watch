@@ -81,6 +81,7 @@ const Navbar = props => {
                     type="button"
                     bgColor="transparent"
                     border="#ffffff"
+                    color="#ffffff"
                   >
                     Logout
                   </CustomButton>
@@ -88,22 +89,29 @@ const Navbar = props => {
               >
                 {close => (
                   <PopupContainer>
-                    <CustomButton
-                      type="button"
-                      onClick={() => close()}
-                      bgColor="transparent"
-                      border="#ffffff"
-                    >
-                      Cancel
-                    </CustomButton>
-                    <CustomButton
-                      type="button"
-                      bgColor="#3b82f6"
-                      border="transparent"
-                      onClick={onClickLogout}
-                    >
-                      Confirm
-                    </CustomButton>
+                    <p className="logout-msg">
+                      Are you sure, you want to logout?
+                    </p>
+                    <div className="logout-container">
+                      <CustomButton
+                        type="button"
+                        onClick={() => close()}
+                        bgColor="transparent"
+                        border="#94a3b8"
+                        color="#94a3b8"
+                      >
+                        Cancel
+                      </CustomButton>
+                      <CustomButton
+                        type="button"
+                        bgColor="#3b82f6"
+                        border="transparent"
+                        onClick={onClickLogout}
+                        color="#ffffff"
+                      >
+                        Confirm
+                      </CustomButton>
+                    </div>
                   </PopupContainer>
                 )}
               </Popup>

@@ -35,3 +35,15 @@
     display: block;
   }
 }
+
+.logout-msg {
+  font-size: 15px;
+  color: #ffffff;
+  font-family: 'roboto';
+}
+
+.logout-container {
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+}

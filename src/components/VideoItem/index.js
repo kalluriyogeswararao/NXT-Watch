@@ -1,15 +1,13 @@
 import {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {formatDistanceToNow} from 'date-fns'
-import SideBar from '../SideBar'
-import {HomeContainer} from './styledComponent'
-import Navbar from '../Navbar'
+import {HomeContainer, TitlePara} from './styledComponent'
 import ThemeContext from '../../context/ThemeContext'
 
 import './index.css'
 
 class VideoItem extends Component {
-  onRenderVideoItem = () => {
+  onRenderVideoItem = isDark => {
     const {videoDetails} = this.props
     const {
       id,
@@ -32,7 +30,7 @@ class VideoItem extends Component {
               className="profileImage"
             />
             <div>
-              <p className="title">{title}</p>
+              <TitlePara mode={isDark}>{title}</TitlePara>
               <p className="channel-name">{name}</p>
               <div className="views-count-container">
                 <p className="channel-name">{viewCount}</p>
@@ -51,7 +49,7 @@ class VideoItem extends Component {
         {value => {
           const {isDark} = value
 
-          return <HomeContainer>{this.onRenderVideoItem()}</HomeContainer>
+          return <HomeContainer>{this.onRenderVideoItem(isDark)}</HomeContainer>
         }}
       </ThemeContext.Consumer>
     )

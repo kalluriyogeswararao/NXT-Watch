@@ -24,6 +24,7 @@ export const PopupContainer = styled.div`
   width: 300px;
   height: 150px;
   justify-content: center;
+  flex-direction: column;
   border-radius: 5px;
   padding: 5px;
   background-color: #212121;
@@ -37,8 +38,9 @@ export const CustomButton = styled.button`
   border-radius: 2px;
   background-color: ${props => props.bgColor};
   border: 1px solid ${props => props.border};
-  color: #ffffff;
+  color: ${props => props.color};
   cursor: pointer;
+  outline: none;
   margin-left: 20px;
   margin-right: 20px;
   display: none;

@@ -5,11 +5,14 @@ export const SideBarContainer = styled.div`
   width: 210px;
   background-color: ${props => (props.mode ? '#212121' : '#f8fafc')};
   padding: 20px;
+  @media screen and (max-width: 768px) {
+    width: 55px;
+  }
 `
 
 export const NavLinks = styled.h1`
   font-family: 'Roboto';
-  font-size: 18px;
+  font-size: 16px;
   color: ${props => (props.mode ? '#f8fafc' : '#212121')};
 `
 export const SelectPageButton = styled.button`
