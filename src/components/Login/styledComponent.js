@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const LoginContainer = styled.div`
-  background-color: ${props => (props.mode ? '#212121' : '#f8fafc')};
+  background-color: ${props => (props.mode === 'true' ? '#212121' : '#f8fafc')};
   height: 100vh;
   display: flex;
   align-items: center;
@@ -12,7 +12,7 @@ export const LoginContainer = styled.div`
   }
 `
 export const FormContainer = styled.form`
-  background-color: ${props => (props.mode ? '#0f0f0f' : '#f9f9f9')};
+  background-color: ${props => (props.mode === 'true' ? '#0f0f0f' : '#f9f9f9')};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -20,7 +20,8 @@ export const FormContainer = styled.form`
   border-radius: 15px;
   width: 450px;
   padding: 40px;
-  box-shadow: ${props => (props.mode ? null : '0px 10px 20px 10px #e2e8f0')};
+  box-shadow: ${props =>
+    props.mode === 'true' ? null : '0px 10px 20px 10px #e2e8f0'};
   @media screen and (max-width: 768px) {
     width: 370px;
   }
@@ -32,7 +33,7 @@ export const ImageLogo = styled.img`
 export const Label = styled.label`
   font-family: 'Roboto';
   font-size: 13px;
-  color: ${props => (props.mode ? '#ffffff' : '#64748b')};
+  color: ${props => (props.mode === 'true' ? '#ffffff' : '#64748b')};
   font-weight: 550;
   margin-bottom: 7px;
   cursor: pointer;

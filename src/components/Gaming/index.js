@@ -120,7 +120,7 @@ class Gaming extends Component {
                 <div className="gaming-top-container">
                   <div className="gaming-trending-container">
                     <div className="gaming-fire-container">
-                      <IoLogoGameControllerB className="fire-icon" />
+                      <IoLogoGameControllerB className="gaming-fire-icon" />
                     </div>
                     <h1 className="gaming-trending-heading">Gaming</h1>
                   </div>

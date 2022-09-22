@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const NavbarContainer = styled.div`
   display: flex;
-  background-color: ${props => (props.mode ? '#212121' : '#f8fafc')};
+  background-color: ${props => (props.mode === 'true' ? '#212121' : '#f8fafc')};
   align-items: center;
   justify-content: space-between;
   padding: 18px;
@@ -46,7 +46,7 @@ export const CustomButton = styled.button`
   }
 `
 export const ThemeButton = styled.button`
-  color: ${props => (props.mode ? '#ffffff' : '#212121')};
+  color: ${props => (props.mode === 'true' ? '#ffffff' : '#212121')};
   background: none;
   border: none;
   cursor: pointer;

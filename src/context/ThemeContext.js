@@ -1,7 +1,7 @@
 import React from 'react'
 
 const ThemeContext = React.createContext({
-  isDark: true,
+  isDarkTheme: true,
   savedVideosList: [],
   addVideoItem: () => {},
   changeTheme: () => {},

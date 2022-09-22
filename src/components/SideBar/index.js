@@ -15,30 +15,55 @@ const SideBar = () => (
 
       return (
         <SideBarContainer mode={isDark}>
-          <Link to="/" className="link">
-            <SelectPageButton mode={isDark}>
-              <AiFillHome className="icons" />
-              <NavLinks mode={isDark}>Home</NavLinks>
-            </SelectPageButton>
-          </Link>
-          <Link to="/trending" className="link">
-            <SelectPageButton mode={isDark}>
-              <HiFire className="icons" />
-              <NavLinks mode={isDark}>Trending</NavLinks>
-            </SelectPageButton>
-          </Link>
-          <Link to="/gaming" className="link">
-            <SelectPageButton mode={isDark}>
-              <IoLogoGameControllerB className="icons" />
-              <NavLinks mode={isDark}>Gaming</NavLinks>
-            </SelectPageButton>
-          </Link>
-          <Link to="/saved-videos" className="link">
-            <SelectPageButton mode={isDark}>
-              <MdPlaylistAdd className="icons" />
-              <NavLinks mode={isDark}>Saved Videos</NavLinks>
-            </SelectPageButton>
-          </Link>
+          <div>
+            <Link to="/" className="link">
+              <SelectPageButton mode={isDark}>
+                <AiFillHome className="icons" />
+                <NavLinks mode={isDark}>Home</NavLinks>
+              </SelectPageButton>
+            </Link>
+            <Link to="/trending" className="link">
+              <SelectPageButton mode={isDark}>
+                <HiFire className="icons" />
+                <NavLinks mode={isDark}>Trending</NavLinks>
+              </SelectPageButton>
+            </Link>
+            <Link to="/gaming" className="link">
+              <SelectPageButton mode={isDark}>
+                <IoLogoGameControllerB className="icons" />
+                <NavLinks mode={isDark}>Gaming</NavLinks>
+              </SelectPageButton>
+            </Link>
+            <Link to="/saved-videos" className="link">
+              <SelectPageButton mode={isDark}>
+                <MdPlaylistAdd className="icons" />
+                <NavLinks mode={isDark}>Saved Videos</NavLinks>
+              </SelectPageButton>
+            </Link>
+          </div>
+          <div>
+            <NavLinks mode={isDark}>Contact Us</NavLinks>
+            <div className="logos-container">
+              <img
+                src="https://assets.ccbp.in/frontend/react-js/nxt-watch-facebook-logo-img.png"
+                alt="facebook"
+                className="logos"
+              />
+              <img
+                src="https://assets.ccbp.in/frontend/react-js/nxt-watch-twitter-logo-img.png"
+                alt="twitter"
+                className="logos"
+              />
+              <img
+                src="https://assets.ccbp.in/frontend/react-js/nxt-watch-linked-in-logo-img.png"
+                alt="linked-in"
+                className="logos"
+              />
+            </div>
+            <NavLinks mode={isDark}>
+              Enjoy! Now to see your channel and recommendations!
+            </NavLinks>
+          </div>
         </SideBarContainer>
       )
     }}

@@ -12,10 +12,10 @@ import SavedVideos from './components/SavedVideos'
 import './App.css'
 
 class App extends Component {
-  state = {isDark: true, savedVideosList: []}
+  state = {isDarkTheme: true, savedVideosList: []}
 
   changeTheme = () => {
-    this.setState(prevState => ({isDark: !prevState.isDark}))
+    this.setState(prevState => ({isDarkTheme: !prevState.isDarkTheme}))
   }
 
   onRemoveVideo = id => {
@@ -37,7 +37,9 @@ class App extends Component {
   }
 
   render() {
-    const {isDark, savedVideosList} = this.state
+    const {isDarkTheme, savedVideosList} = this.state
+    const isDark = isDarkTheme ? 'true' : 'false'
+    console.log(savedVideosList)
     return (
       <ThemeContext.Provider
         value={{

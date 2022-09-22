@@ -6,11 +6,11 @@ export const HomeContainer = styled.div`
 export const VideosContainer = styled.div`
   padding: 10px;
   width: 100%;
-  background-color: ${props => (props.mode ? '#000000' : '#f8fafc')};
+  background-color: ${props => (props.mode === 'true' ? '#000000' : '#f8fafc')};
 `
 export const TitlePara = styled.p`
   font-size: 12px;
-  color: ${props => (props.mode ? '#f8fafc' : '#000000')};
+  color: ${props => (props.mode === 'true' ? '#f8fafc' : '#000000')};
   font-family: 'roboto';
   line-height: 1.5;
 `

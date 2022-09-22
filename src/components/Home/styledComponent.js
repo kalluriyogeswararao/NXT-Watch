@@ -4,12 +4,13 @@ export const HomeContainer = styled.div`
   display: flex;
   min-height: 100vh;
   width: 100vw;
+  background-color: ${props => (props.mode === 'true' ? '#000000' : '#f8fafc')};
 `
 export const VideosContainer = styled.div`
   padding: 20px;
 
   width: 100%;
-  background-color: ${props => (props.mode ? '#000000' : '#f8fafc')};
+  background-color: ${props => (props.mode === 'true' ? '#000000' : '#f8fafc')};
 `
 export const Input = styled.input`
   width: 100%;
@@ -21,7 +22,7 @@ export const Input = styled.input`
   height: 50px;
   font-family: 'roboto';
   padding-left: 15px;
-  color: ${props => (props.mode ? '#ffffff' : '#000000')};
+  color: ${props => (props.mode === 'true' ? '#ffffff' : '#000000')};
   font-size: 15px;
-  background-color: ${props => (props.mode ? '#000000' : '#f8fafc')};
+  background-color: ${props => (props.mode === 'true' ? '#000000' : '#f8fafc')};
 `

@@ -52,6 +52,7 @@ class VideoDetails extends Component {
 
     if (response.ok) {
       const data = await response.json()
+
       const updatedData = {
         id: data.video_details.id,
         title: data.video_details.title,
@@ -65,11 +66,14 @@ class VideoDetails extends Component {
         viewCount: data.video_details.view_count,
         publishedAt: data.video_details.published_at,
         description: data.video_details.description,
+        isLike: data.video_details.isLike,
       }
+      console.log(updatedData)
 
       this.setState({
         videoList: updatedData,
         apiStatus: apiStatusConstraints.success,
+        isLike: updatedData.isLike,
       })
     } else {
       this.setState({apiStatus: apiStatusConstraints.failure})
@@ -96,7 +100,6 @@ class VideoDetails extends Component {
       <ThemeContext.Consumer>
         {value => {
           const {addVideoItem} = value
-
           const {
             title,
             videoUrl,
@@ -109,9 +112,13 @@ class VideoDetails extends Component {
           const date = formatDistanceToNow(new Date(publishedAt))
 
           const onSaveVideoButton = () => {
-            addVideoItem({...videoList})
-            this.setState(prevState => ({isSaveVideo: !prevState.isSaveVideo}))
+            this.setState(
+              prevState => ({isSaveVideo: !prevState.isSaveVideo}),
+              addVideoItem({...videoList, isLike, isDislike, isSaveVideo}),
+            )
           }
+
+          const btnText = isSaveVideo ? 'Saved' : 'Save'
 
           return (
             <div className="video-item-container">
@@ -154,26 +161,14 @@ class VideoDetails extends Component {
                       </LikeAndDislikeButton>
                     </div>
                     <div className="dislike-container">
-                      {isSaveVideo && (
-                        <button
-                          type="button"
-                          onClick={onSaveVideoButton}
-                          className="save-btn"
-                        >
-                          <MdPlaylistAdd className="like-icon" />
-                          <p className="like-icon-name">Saved</p>
-                        </button>
-                      )}
-                      {!isSaveVideo && (
-                        <button
-                          type="button"
-                          onClick={onSaveVideoButton}
-                          className="not-saved-btn"
-                        >
-                          <MdPlaylistAdd className="like-icon" />
-                          <p className="like-icon-name">Save</p>
-                        </button>
-                      )}
+                      <LikeAndDislikeButton
+                        type="button"
+                        onClick={onSaveVideoButton}
+                        like={isSaveVideo}
+                      >
+                        <MdPlaylistAdd className="like-icon" />
+                        <p className="like-icon-name">{btnText}</p>
+                      </LikeAndDislikeButton>
                     </div>
                   </div>
                 </div>

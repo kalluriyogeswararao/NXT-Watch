@@ -1,0 +1,18 @@
+.no-saved-videos {
+  width: 500px;
+  margin-bottom: 20px;
+}
+.no-saved-videos-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+}
+
+.saved-videos-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}

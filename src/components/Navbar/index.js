@@ -32,7 +32,7 @@ const Navbar = props => {
 
         return (
           <NavbarContainer mode={isDark}>
-            {isDark && (
+            {isDark === 'true' && (
               <Link to="/">
                 <img
                   src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png"
@@ -41,7 +41,7 @@ const Navbar = props => {
                 />
               </Link>
             )}
-            {!isDark && (
+            {isDark === 'false' && (
               <Link to="/">
                 <img
                   src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"

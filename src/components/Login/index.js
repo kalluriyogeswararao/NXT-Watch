@@ -17,7 +17,13 @@ import {
 import ThemeContext from '../../context/ThemeContext'
 
 class Login extends Component {
-  state = {username: '', password: '', showErrorMsg: false, errorMsg: ''}
+  state = {
+    username: '',
+    password: '',
+    showErrorMsg: false,
+    errorMsg: '',
+    showPassword: false,
+  }
 
   onSuccessLogin = jwtToken => {
     const {history} = this.props
@@ -55,12 +61,18 @@ class Login extends Component {
     this.setState({password: event.target.value})
   }
 
-  onClickShowPassword = event => {
-    console.log(event.target.value)
+  onClickShowPassword = () => {
+    this.setState(prevState => ({showPassword: !prevState.showPassword}))
   }
 
   render() {
-    const {showErrorMsg, errorMsg, username, password} = this.state
+    const {
+      showErrorMsg,
+      errorMsg,
+      username,
+      password,
+      showPassword,
+    } = this.state
     const jwtToken = Cookies.get('jwt_token')
     if (jwtToken !== undefined) {
       return <Redirect to="/" />
@@ -96,7 +108,7 @@ class Login extends Component {
                     PASSWORD
                   </Label>
                   <Input
-                    type="password"
+                    type={showPassword ? 'text' : 'password'}
                     placeholder="Enter Password"
                     width="100%"
                     id="password"

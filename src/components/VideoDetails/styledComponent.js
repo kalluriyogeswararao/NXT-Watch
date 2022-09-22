@@ -4,7 +4,7 @@ export const ReactHomeContainer = styled.div`
   display: flex;
   min-height: 120vh;
   width: 100vw;
-  background-color: ${props => (props.mode ? '#000000' : '#f8fafc')};
+  background-color: ${props => (props.mode === 'true' ? '#000000' : '#f8fafc')};
 `
 export const Title = styled.div`
   color: #ffffff;
@@ -16,7 +16,7 @@ export const LikeAndDislikeButton = styled.button`
   border: none;
   outline: none;
   cursor: pointer;
-  color: ${props => (props.like ? '#3b82f6' : '#616e7c')};
+  color: ${props => (props.like ? '#2563eb' : '#64748b')};
   display: flex;
   align-items: center;
 `

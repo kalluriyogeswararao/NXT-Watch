@@ -96,7 +96,7 @@
 .not-saved-btn {
   font-size: 18px;
   font-family: 'roboto';
-  color: #616e7c;
+  color: #64748b;
   background: none;
   border: none;
   display: flex;
@@ -105,7 +105,7 @@
 }
 
 .save-btn {
-  color: #3b82f6;
+  color: #2563eb;
   background: none;
   border: none;
   display: flex;

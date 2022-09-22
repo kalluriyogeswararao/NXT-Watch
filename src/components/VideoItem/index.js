@@ -17,6 +17,7 @@ class VideoItem extends Component {
       viewCount,
       publishedAt,
     } = videoDetails
+
     const {name, profileImageUrl} = channel
     const date = formatDistanceToNow(new Date(publishedAt))
     return (

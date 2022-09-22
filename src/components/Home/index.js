@@ -148,7 +148,7 @@ class Home extends Component {
           return (
             <>
               <Navbar />
-              <HomeContainer>
+              <HomeContainer mode={isDark}>
                 <SideBar />
                 <VideosContainer mode={isDark}>
                   {isPrime && this.renderPrimePoster()}

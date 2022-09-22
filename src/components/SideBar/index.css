@@ -18,3 +18,13 @@
     font-size: 23px;
   }
 }
+
+.logos {
+  width: 25px;
+  margin-right: 10px;
+}
+
+.logos-container {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
