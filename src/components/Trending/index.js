@@ -51,7 +51,7 @@ class Trending extends Component {
         viewCount: eachVideo.view_count,
         publishedAt: eachVideo.published_at,
       }))
-      console.log(updatedData)
+
       this.setState({
         videoList: updatedData,
         apiStatus: apiStatusConstraints.success,

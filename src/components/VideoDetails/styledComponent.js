@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
-export const HomeContainer = styled.div`
+export const ReactHomeContainer = styled.div`
   display: flex;
-  min-height: 100vh;
+  min-height: 120vh;
   width: 100vw;
   background-color: ${props => (props.mode ? '#000000' : '#f8fafc')};
 `

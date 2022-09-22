@@ -1,11 +1,18 @@
 .video-item-container {
-  padding: 20px;
+  padding: 10px;
   width: 100%;
+  height: 100%;
+}
+
+.video-page-container {
+  min-height: 100vh;
 }
 
 .video-Details-container {
-  width: 100%;
   height: 500px;
+  width: 100%;
+}
+.react-player-container {
   margin-bottom: 30px;
 }
 
@@ -76,6 +83,7 @@
 .subscriber-container {
   display: flex;
   margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 .channel-name {
@@ -83,4 +91,26 @@
   font-size: 15px;
   font-family: 'roboto';
   margin-bottom: 30px;
+}
+
+.not-saved-btn {
+  font-size: 18px;
+  font-family: 'roboto';
+  color: #616e7c;
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.save-btn {
+  color: #3b82f6;
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  font-family: 'roboto';
+  cursor: pointer;
 }
