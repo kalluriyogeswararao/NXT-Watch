@@ -5,7 +5,13 @@ import Cookies from 'js-cookie'
 import SideBar from '../SideBar'
 import Navbar from '../Navbar'
 import TrendingVideoItem from '../TrendingVideoItem'
-import {HomeContainer} from './styledComponent'
+import {
+  HomeContainer,
+  TrendContainer,
+  TrendingHeading,
+  FailureHeading,
+  FailurePara,
+} from './styledComponent'
 import ThemeContext from '../../context/ThemeContext'
 import './index.css'
 
@@ -67,45 +73,59 @@ class Trending extends Component {
     </div>
   )
 
-  onRenderDisplayVideos = () => {
+  onRenderDisplayVideos = isDark => {
     const {videoList} = this.state
 
     return (
-      <ul className="trend-all-videos">
-        {videoList.map(video => (
-          <TrendingVideoItem videoDetails={video} key={video.id} />
-        ))}
-      </ul>
+      <>
+        <div className="top-container">
+          <TrendContainer mode={isDark}>
+            <div className="fire-container">
+              <HiFire className="fire-icon" />
+            </div>
+            <TrendingHeading mode={isDark}>Trending</TrendingHeading>
+          </TrendContainer>
+          <ul className="trend-all-videos">
+            {videoList.map(video => (
+              <TrendingVideoItem videoDetails={video} key={video.id} />
+            ))}
+          </ul>
+        </div>
+      </>
     )
   }
 
-  onRenderFailureStatus = () => (
+  onRenderFailureStatus = isDark => (
     <div className="failure-container">
       <img
-        src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png"
+        src={
+          isDark === 'true'
+            ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png'
+            : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png'
+        }
         alt="failure view"
         className="failure-view"
       />
-      <h1 className="oops-error">Oops! Something Went Wrong</h1>
-      <p className="failure-error-msg">
-        We cannot seem to find the page you are looking for.
-      </p>
+      <FailureHeading mode={isDark}>Oops! Something Went Wrong</FailureHeading>
+      <FailurePara mode={isDark}>
+        We are having some trouble ot complete your request. Please try again.
+      </FailurePara>
       <button type="button" className="retry-btn" onClick={this.onClickRetry}>
         Retry
       </button>
     </div>
   )
 
-  onRenderAllVideos = () => {
+  onRenderAllVideos = isDark => {
     const {apiStatus} = this.state
 
     switch (apiStatus) {
       case apiStatusConstraints.inprogress:
         return this.onRenderInprogress()
       case apiStatusConstraints.success:
-        return this.onRenderDisplayVideos()
+        return this.onRenderDisplayVideos(isDark)
       case apiStatusConstraints.failure:
-        return this.onRenderFailureStatus()
+        return this.onRenderFailureStatus(isDark)
       default:
         return null
     }
@@ -122,15 +142,7 @@ class Trending extends Component {
               <Navbar />
               <HomeContainer mode={isDark}>
                 <SideBar />
-                <div className="top-container">
-                  <div className="trending-container">
-                    <div className="fire-container">
-                      <HiFire className="fire-icon" />
-                    </div>
-                    <h1 className="trending-heading">Trending</h1>
-                  </div>
-                  {this.onRenderAllVideos(isDark)}
-                </div>
+                {this.onRenderAllVideos(isDark)}
               </HomeContainer>
             </>
           )

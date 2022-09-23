@@ -7,7 +7,13 @@ import SideBar from '../SideBar'
 import Navbar from '../Navbar'
 import VideoItem from '../VideoItem'
 import ThemeContext from '../../context/ThemeContext'
-import {HomeContainer, VideosContainer, Input} from './styledComponent'
+import {
+  HomeContainer,
+  VideosContainer,
+  Input,
+  FailureHeading,
+  FailurePara,
+} from './styledComponent'
 import './index.css'
 
 const apiStatusConstraints = {
@@ -62,6 +68,10 @@ class Home extends Component {
     }
   }
 
+  onClickRetry = () => {
+    this.onRenderVideos()
+  }
+
   onClickRemovePrime = () => {
     this.setState({isPrime: false})
   }
@@ -105,24 +115,28 @@ class Home extends Component {
     )
   }
 
-  onRenderFailureStatus = () => (
+  onRenderFailureStatus = isDark => (
     <div className="failure-container">
       <img
-        src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png"
+        src={
+          isDark === 'true'
+            ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png'
+            : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png'
+        }
         alt="failure view"
         className="failure-view"
       />
-      <h1 className="oops-error">Oops! Something Went Wrong</h1>
-      <p className="failure-error-msg">
-        We cannot seem to find the page you are looking for.
-      </p>
+      <FailureHeading mode={isDark}>Oops! Something Went Wrong</FailureHeading>
+      <FailurePara mode={isDark}>
+        We are having some trouble ot complete your request. Please try again.
+      </FailurePara>
       <button type="button" className="retry-btn" onClick={this.onClickRetry}>
         Retry
       </button>
     </div>
   )
 
-  onRenderAllVideos = () => {
+  onRenderAllVideos = isDark => {
     const {apiStatus} = this.state
 
     switch (apiStatus) {
@@ -131,7 +145,7 @@ class Home extends Component {
       case apiStatusConstraints.success:
         return this.onRenderDisplayVideos()
       case apiStatusConstraints.failure:
-        return this.onRenderFailureStatus()
+        return this.onRenderFailureStatus(isDark)
       default:
         return null
     }
@@ -165,7 +179,7 @@ class Home extends Component {
                   </div>
 
                   <div className="display-videos">
-                    {this.onRenderAllVideos()}
+                    {this.onRenderAllVideos(isDark)}
                   </div>
                 </VideosContainer>
               </HomeContainer>

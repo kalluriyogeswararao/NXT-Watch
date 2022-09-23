@@ -102,6 +102,13 @@
 }
 .retry-btn {
   cursor: pointer;
+  background-color: #2563eb;
+  height: 32px;
+  width: 90px;
+  border: none;
+  font-size: 15px;
+  outline: none;
+  color: #ffffff;
 }
 
 @media screen and (max-width: 768px) {

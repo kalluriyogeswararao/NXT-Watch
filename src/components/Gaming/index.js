@@ -5,7 +5,13 @@ import Cookies from 'js-cookie'
 import SideBar from '../SideBar'
 import Navbar from '../Navbar'
 import GamingVideoItem from '../GamingVideoItem'
-import {HomeContainer} from './styledComponent'
+import {
+  HomeContainer,
+  GameContainer,
+  GameHeading,
+  FailureHeading,
+  FailurePara,
+} from './styledComponent'
 import ThemeContext from '../../context/ThemeContext'
 import './index.css'
 
@@ -62,45 +68,59 @@ class Gaming extends Component {
     </div>
   )
 
-  onRenderDisplayVideos = () => {
+  onRenderDisplayVideos = isDark => {
     const {videoList} = this.state
 
     return (
-      <ul className="gaming-all-videos">
-        {videoList.map(video => (
-          <GamingVideoItem videoDetails={video} key={video.id} />
-        ))}
-      </ul>
+      <>
+        <div className="gaming-top-container">
+          <GameContainer mode={isDark}>
+            <div className="gaming-fire-container">
+              <IoLogoGameControllerB className="gaming-fire-icon" />
+            </div>
+            <GameHeading mode={isDark}>Gaming</GameHeading>
+          </GameContainer>
+          <ul className="gaming-all-videos">
+            {videoList.map(video => (
+              <GamingVideoItem videoDetails={video} key={video.id} />
+            ))}
+          </ul>
+        </div>
+      </>
     )
   }
 
-  onRenderFailureStatus = () => (
+  onRenderFailureStatus = isDark => (
     <div className="failure-container">
       <img
-        src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png"
+        src={
+          isDark === 'true'
+            ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png'
+            : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png'
+        }
         alt="failure view"
         className="failure-view"
       />
-      <h1 className="oops-error">Oops! Something Went Wrong</h1>
-      <p className="failure-error-msg">
-        We cannot seem to find the page you are looking for.
-      </p>
+      <FailureHeading mode={isDark}>Oops! Something Went Wrong</FailureHeading>
+      <FailurePara mode={isDark}>
+        We are having some trouble ot complete your request. Please try again.
+      </FailurePara>
       <button type="button" className="retry-btn" onClick={this.onClickRetry}>
         Retry
       </button>
     </div>
   )
 
-  onRenderAllVideos = () => {
+  onRenderAllVideos = isDark => {
     const {apiStatus} = this.state
 
     switch (apiStatus) {
       case apiStatusConstraints.inprogress:
         return this.onRenderInprogress()
       case apiStatusConstraints.success:
-        return this.onRenderDisplayVideos()
+        return this.onRenderDisplayVideos(isDark)
       case apiStatusConstraints.failure:
-        return this.onRenderFailureStatus()
+        return this.onRenderFailureStatus(isDark)
       default:
         return null
     }
@@ -117,15 +137,7 @@ class Gaming extends Component {
               <Navbar />
               <HomeContainer mode={isDark}>
                 <SideBar />
-                <div className="gaming-top-container">
-                  <div className="gaming-trending-container">
-                    <div className="gaming-fire-container">
-                      <IoLogoGameControllerB className="gaming-fire-icon" />
-                    </div>
-                    <h1 className="gaming-trending-heading">Gaming</h1>
-                  </div>
-                  {this.onRenderAllVideos(isDark)}
-                </div>
+                {this.onRenderAllVideos(isDark)}
               </HomeContainer>
             </>
           )

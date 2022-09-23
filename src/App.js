@@ -8,6 +8,7 @@ import Trending from './components/Trending'
 import Gaming from './components/Gaming'
 import VideoDetails from './components/VideoDetails'
 import SavedVideos from './components/SavedVideos'
+import NotFound from './components/NotFound'
 
 import './App.css'
 
@@ -39,7 +40,7 @@ class App extends Component {
   render() {
     const {isDarkTheme, savedVideosList} = this.state
     const isDark = isDarkTheme ? 'true' : 'false'
-    console.log(savedVideosList)
+
     return (
       <ThemeContext.Provider
         value={{
@@ -56,6 +57,7 @@ class App extends Component {
           <ProtectedRoute exact path="/gaming" component={Gaming} />
           <ProtectedRoute exact path="/videos/:id" component={VideoDetails} />
           <ProtectedRoute exact path="/saved-videos" component={SavedVideos} />
+          <Route component={NotFound} />
         </Switch>
       </ThemeContext.Provider>
     )

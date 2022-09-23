@@ -29,6 +29,7 @@ class VideoDetails extends Component {
     isLike: false,
     isDislike: false,
     isSaveVideo: false,
+    savedVideos: [],
   }
 
   componentDidMount() {
@@ -40,43 +41,53 @@ class VideoDetails extends Component {
     const {match} = this.props
     const {params} = match
     const {id} = params
-    const jwtToken = Cookies.get('jwt_token')
-    const url = `https://apis.ccbp.in/videos/${id}`
-    const options = {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${jwtToken}`,
-      },
-    }
-    const response = await fetch(url, options)
+    const {savedVideos} = this.state
 
-    if (response.ok) {
-      const data = await response.json()
-
-      const updatedData = {
-        id: data.video_details.id,
-        title: data.video_details.title,
-        videoUrl: data.video_details.video_url,
-        thumbnailUrl: data.video_details.thumbnail_url,
-        channel: {
-          name: data.video_details.channel.name,
-          profileImageUrl: data.video_details.channel.profile_image_url,
-          subscriberCount: data.video_details.channel.subscriber_count,
-        },
-        viewCount: data.video_details.view_count,
-        publishedAt: data.video_details.published_at,
-        description: data.video_details.description,
-        isLike: data.video_details.isLike,
-      }
-      console.log(updatedData)
-
+    const findObject = savedVideos.find(item => item.id === id)
+    console.log(savedVideos)
+    if (findObject !== undefined) {
       this.setState({
-        videoList: updatedData,
-        apiStatus: apiStatusConstraints.success,
-        isLike: updatedData.isLike,
+        videoList: findObject,
+        isLike: findObject.isLike,
+        isDislike: findObject.isDislike,
+        isSaveVideo: true,
       })
     } else {
-      this.setState({apiStatus: apiStatusConstraints.failure})
+      const jwtToken = Cookies.get('jwt_token')
+      const url = `https://apis.ccbp.in/videos/${id}`
+      const options = {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${jwtToken}`,
+        },
+      }
+      const response = await fetch(url, options)
+
+      if (response.ok) {
+        const data = await response.json()
+
+        const updatedData = {
+          id: data.video_details.id,
+          title: data.video_details.title,
+          videoUrl: data.video_details.video_url,
+          thumbnailUrl: data.video_details.thumbnail_url,
+          channel: {
+            name: data.video_details.channel.name,
+            profileImageUrl: data.video_details.channel.profile_image_url,
+            subscriberCount: data.video_details.channel.subscriber_count,
+          },
+          viewCount: data.video_details.view_count,
+          publishedAt: data.video_details.published_at,
+          description: data.video_details.description,
+        }
+
+        this.setState({
+          videoList: updatedData,
+          apiStatus: apiStatusConstraints.success,
+        })
+      } else {
+        this.setState({apiStatus: apiStatusConstraints.failure})
+      }
     }
   }
 
@@ -99,7 +110,7 @@ class VideoDetails extends Component {
     return (
       <ThemeContext.Consumer>
         {value => {
-          const {addVideoItem} = value
+          const {addVideoItem, savedVideosList} = value
           const {
             title,
             videoUrl,
@@ -112,10 +123,11 @@ class VideoDetails extends Component {
           const date = formatDistanceToNow(new Date(publishedAt))
 
           const onSaveVideoButton = () => {
-            this.setState(
-              prevState => ({isSaveVideo: !prevState.isSaveVideo}),
-              addVideoItem({...videoList, isLike, isDislike, isSaveVideo}),
-            )
+            this.setState(prevState => ({
+              isSaveVideo: !prevState.isSaveVideo,
+              savedVideos: savedVideosList,
+            }))
+            addVideoItem({...videoList, isLike, isDislike})
           }
 
           const btnText = isSaveVideo ? 'Saved' : 'Save'

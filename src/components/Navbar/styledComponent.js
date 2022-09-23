@@ -32,14 +32,16 @@ export const CustomButton = styled.button`
   font-family: 'Roboto';
   font-size: 15px;
   width: 86px;
-  border-radius: 2px;
-  background-color: ${props => props.bgColor};
+  border-radius: 3px;
+  background-color: ${props => (props.mode === 'true' ? '#f9f9f9' : '#2563eb')};
   border: 1px solid ${props => props.border};
-  color: ${props => props.color};
+  color: ${props => (props.mode === 'true' ? '#212121' : '#f9f9f9')};
   cursor: pointer;
   outline: none;
   margin-left: 20px;
   margin-right: 20px;
+
+  font-weight: 550;
   display: none;
   @media screen and (min-width: 768px) {
     display: block;
@@ -53,5 +55,25 @@ export const ThemeButton = styled.button`
   outline: none;
   font-size: 30px;
   margin-right: 30px;
+  margin-top: 10px;
   cursor: pointer;
+`
+export const Button = styled.button`
+  height: 32px;
+  font-family: 'Roboto';
+  font-size: 15px;
+  width: 86px;
+  border-radius: 3px;
+  background-color: ${props => props.bgColor};
+  border: 1px solid ${props => props.border};
+  color: ${props => props.color};
+  cursor: pointer;
+  outline: none;
+  margin-left: 20px;
+  margin-right: 20px;
+  font-weight: 550;
+  display: none;
+  @media screen and (min-width: 768px) {
+    display: block;
+  }
 `

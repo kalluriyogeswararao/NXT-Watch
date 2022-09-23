@@ -3,6 +3,8 @@ import {
   HomeContainer,
   NoSavedVideos,
   NoSavedVideosDescription,
+  SavedContainer,
+  SavedHeading,
 } from './styledComponent'
 
 import ThemeContext from '../../context/ThemeContext'
@@ -19,13 +21,13 @@ const SavedVideos = () => (
 
         const onRenderVideos = () => (
           <div className="top-container">
-            <div className="trending-container">
+            <SavedContainer mode={isDark}>
               <div className="fire-container">
                 <MdPlaylistAdd className="fire-icon" />
               </div>
-              <h1 className="trending-heading">Saved Videos</h1>
-            </div>
-            <ul>
+              <SavedHeading mode={isDark}>Saved Videos</SavedHeading>
+            </SavedContainer>
+            <ul className="all-saved-videos">
               {savedVideosList.map(eachVideo => (
                 <SavedVideoItem eachVideo={eachVideo} key={eachVideo.id} />
               ))}

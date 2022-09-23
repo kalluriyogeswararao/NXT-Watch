@@ -23,3 +23,15 @@ export const NoSavedVideosDescription = styled.p`
   color: ${props => (props.mode === 'true' ? '#f8fafc' : '#000000')};
   font-family: 'roboto';
 `
+export const SavedContainer = styled.div`
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  background-color: ${props => (props.mode === 'true' ? '#212121' : '#f8fafc')};
+`
+export const SavedHeading = styled.h1`
+  color: ${props => (props.mode === 'true' ? '#f8fafc' : '#212121')};
+  font-size: 28px;
+  font-family: 'roboto';
+  font-weight: 550;
+`

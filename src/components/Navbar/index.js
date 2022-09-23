@@ -11,6 +11,7 @@ import {
   CustomButton,
   PopupContainer,
   ThemeButton,
+  Button,
 } from './styledComponent'
 import './index.css'
 
@@ -51,24 +52,14 @@ const Navbar = props => {
               </Link>
             )}
             <div className="navbar-container">
-              {isDark && (
-                <ThemeButton
-                  type="button"
-                  onClick={onClickChangeTheme}
-                  mode={isDark}
-                >
-                  <HiOutlineSun className="sun-icon" />
-                </ThemeButton>
-              )}
-              {!isDark && (
-                <ThemeButton
-                  type="button"
-                  onClick={onClickChangeTheme}
-                  mode={isDark}
-                >
-                  <FaMoon className="sun-icon" />
-                </ThemeButton>
-              )}
+              <ThemeButton
+                type="button"
+                onClick={onClickChangeTheme}
+                mode={isDark}
+              >
+                {isDark === 'true' ? <HiOutlineSun /> : <FaMoon />}
+              </ThemeButton>
+
               <img
                 src="https://assets.ccbp.in/frontend/react-js/nxt-watch-profile-img.png"
                 alt="profile"
@@ -79,12 +70,7 @@ const Navbar = props => {
                 <Popup
                   modal
                   trigger={
-                    <CustomButton
-                      type="button"
-                      bgColor="transparent"
-                      border="#ffffff"
-                      color="#ffffff"
-                    >
+                    <CustomButton type="button" mode={isDark}>
                       Logout
                     </CustomButton>
                   }
@@ -95,24 +81,23 @@ const Navbar = props => {
                         Are you sure, you want to logout?
                       </p>
                       <div className="logout-container">
-                        <CustomButton
+                        <Button
                           type="button"
                           onClick={() => close()}
                           bgColor="transparent"
-                          border="#94a3b8"
-                          color="#94a3b8"
+                          border="#ffffff"
+                          color="#ffffff"
                         >
                           Cancel
-                        </CustomButton>
-                        <CustomButton
-                          type="button"
+                        </Button>
+                        <Button
+                          onClick={onClickLogout}
                           bgColor="#3b82f6"
                           border="transparent"
-                          onClick={onClickLogout}
                           color="#ffffff"
                         >
                           Confirm
-                        </CustomButton>
+                        </Button>
                       </div>
                     </PopupContainer>
                   )}
