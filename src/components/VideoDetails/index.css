@@ -114,3 +114,33 @@
   font-family: 'roboto';
   cursor: pointer;
 }
+
+.vide-details-container {
+  display: flex;
+}
+
+.save-btn {
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 18px;
+  font-family: 'roboto';
+  font-weight: 550;
+  color: #2563eb;
+  display: flex;
+  align-items: center;
+}
+
+.not-save-btn {
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 18px;
+  font-family: 'roboto';
+  font-weight: 550;
+  display: flex;
+  align-items: center;
+  color: #64748b;
+}

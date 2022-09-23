@@ -15,10 +15,10 @@ const GamingVideoItem = props => {
         return (
           <VideosContainer mode={isDark}>
             <Link to={`/videos/${id}`} className="game-link">
-              <li className="game-video">
+              <div className="game-video">
                 <img
                   src={thumbnailUrl}
-                  alt={title}
+                  alt="video thumbnail"
                   className="game-video-image"
                 />
                 <div className="game-profile-container">
@@ -31,7 +31,7 @@ const GamingVideoItem = props => {
                     </div>
                   </div>
                 </div>
-              </li>
+              </div>
             </Link>
           </VideosContainer>
         )

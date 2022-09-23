@@ -85,11 +85,15 @@ class Login extends Component {
           return (
             <LoginContainer mode={isDark}>
               <FormContainer mode={isDark} onSubmit={this.onSubmitFormDetails}>
-                {isDark ? (
-                  <ImageLogo src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png" />
-                ) : (
-                  <ImageLogo src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png" />
-                )}
+                <ImageLogo
+                  src={
+                    isDark === 'true'
+                      ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png'
+                      : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png'
+                  }
+                  alt="website logo"
+                />
+
                 <LabelAndInputContainer>
                   <Label htmlFor="username" mode={isDark}>
                     USERNAME

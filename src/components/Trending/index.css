@@ -4,7 +4,9 @@
   justify-content: center;
   align-items: center;
 }
-
+.trending-container {
+  display: flex;
+}
 .oops-error {
   font-size: 30px;
   color: #ffffff;
@@ -55,4 +57,5 @@
 
 .trend-all-videos {
   padding: 20px;
+  list-style-type: none;
 }

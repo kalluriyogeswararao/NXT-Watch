@@ -19,4 +19,8 @@
 
 .all-saved-videos {
   padding: 20px;
+  list-style-type: none;
+}
+.saved-videos-container {
+  display: flex;
 }

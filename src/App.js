@@ -13,7 +13,7 @@ import NotFound from './components/NotFound'
 import './App.css'
 
 class App extends Component {
-  state = {isDarkTheme: true, savedVideosList: []}
+  state = {isDarkTheme: false, savedVideosList: []}
 
   changeTheme = () => {
     this.setState(prevState => ({isDarkTheme: !prevState.isDarkTheme}))

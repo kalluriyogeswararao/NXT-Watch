@@ -23,27 +23,29 @@ const TrendingVideoItem = props => {
         const {isDark} = value
 
         return (
-          <VideosContainer mode={isDark}>
-            <Link to={`/videos/${id}`} className="trend-link">
-              <li className="trend-video">
-                <img
-                  src={thumbnailUrl}
-                  alt={title}
-                  className="trend-video-image"
-                />
-                <div className="trend-profile-container">
-                  <TitlePara mode={isDark}>{title}</TitlePara>
-                  <div>
-                    <p className="trend-channel-name">{name}</p>
-                    <div className="trend-views-count-container">
-                      <p className="trend-channel-name">{viewCount}</p>
-                      <p className="trend-channel-name">{date}</p>
+          <li>
+            <VideosContainer mode={isDark}>
+              <Link to={`/videos/${id}`} className="trend-link">
+                <div className="trend-video">
+                  <img
+                    src={thumbnailUrl}
+                    alt="video thumbnail"
+                    className="trend-video-image"
+                  />
+                  <div className="trend-profile-container">
+                    <TitlePara mode={isDark}>{title}</TitlePara>
+                    <div>
+                      <p className="trend-channel-name">{name}</p>
+                      <div className="trend-views-count-container">
+                        <p className="trend-channel-name">{viewCount}</p>
+                        <p className="trend-channel-name">{date}</p>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </li>
-            </Link>
-          </VideosContainer>
+              </Link>
+            </VideosContainer>
+          </li>
         )
       }}
     </ThemeContext.Consumer>

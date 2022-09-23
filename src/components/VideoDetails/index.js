@@ -6,7 +6,7 @@ import {MdPlaylistAdd} from 'react-icons/md'
 import {formatDistanceToNow} from 'date-fns'
 import ReactPlayer from 'react-player'
 import SideBar from '../SideBar'
-import Navbar from '../Navbar'
+import Header from '../Header'
 import {
   ReactHomeContainer,
   Title,
@@ -29,7 +29,6 @@ class VideoDetails extends Component {
     isLike: false,
     isDislike: false,
     isSaveVideo: false,
-    savedVideos: [],
   }
 
   componentDidMount() {
@@ -41,53 +40,41 @@ class VideoDetails extends Component {
     const {match} = this.props
     const {params} = match
     const {id} = params
-    const {savedVideos} = this.state
 
-    const findObject = savedVideos.find(item => item.id === id)
-    console.log(savedVideos)
-    if (findObject !== undefined) {
+    const jwtToken = Cookies.get('jwt_token')
+    const url = `https://apis.ccbp.in/videos/${id}`
+    const options = {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${jwtToken}`,
+      },
+    }
+    const response = await fetch(url, options)
+
+    if (response.ok) {
+      const data = await response.json()
+
+      const updatedData = {
+        id: data.video_details.id,
+        title: data.video_details.title,
+        videoUrl: data.video_details.video_url,
+        thumbnailUrl: data.video_details.thumbnail_url,
+        channel: {
+          name: data.video_details.channel.name,
+          profileImageUrl: data.video_details.channel.profile_image_url,
+          subscriberCount: data.video_details.channel.subscriber_count,
+        },
+        viewCount: data.video_details.view_count,
+        publishedAt: data.video_details.published_at,
+        description: data.video_details.description,
+      }
+
       this.setState({
-        videoList: findObject,
-        isLike: findObject.isLike,
-        isDislike: findObject.isDislike,
-        isSaveVideo: true,
+        videoList: updatedData,
+        apiStatus: apiStatusConstraints.success,
       })
     } else {
-      const jwtToken = Cookies.get('jwt_token')
-      const url = `https://apis.ccbp.in/videos/${id}`
-      const options = {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${jwtToken}`,
-        },
-      }
-      const response = await fetch(url, options)
-
-      if (response.ok) {
-        const data = await response.json()
-
-        const updatedData = {
-          id: data.video_details.id,
-          title: data.video_details.title,
-          videoUrl: data.video_details.video_url,
-          thumbnailUrl: data.video_details.thumbnail_url,
-          channel: {
-            name: data.video_details.channel.name,
-            profileImageUrl: data.video_details.channel.profile_image_url,
-            subscriberCount: data.video_details.channel.subscriber_count,
-          },
-          viewCount: data.video_details.view_count,
-          publishedAt: data.video_details.published_at,
-          description: data.video_details.description,
-        }
-
-        this.setState({
-          videoList: updatedData,
-          apiStatus: apiStatusConstraints.success,
-        })
-      } else {
-        this.setState({apiStatus: apiStatusConstraints.failure})
-      }
+      this.setState({apiStatus: apiStatusConstraints.failure})
     }
   }
 
@@ -100,17 +87,17 @@ class VideoDetails extends Component {
   }
 
   onRenderInprogress = () => (
-    <div className="loader-container">
+    <div className="loader-container" data-testid="loader">
       <Loader type="ThreeDots" color="#ffffff" height="40" width="40" />
     </div>
   )
 
-  onRenderSuccessVideo = () => {
+  onRenderSuccessVideo = isDark => {
     const {videoList, isLike, isDislike, isSaveVideo} = this.state
     return (
       <ThemeContext.Consumer>
         {value => {
-          const {addVideoItem, savedVideosList} = value
+          const {addVideoItem} = value
           const {
             title,
             videoUrl,
@@ -125,12 +112,9 @@ class VideoDetails extends Component {
           const onSaveVideoButton = () => {
             this.setState(prevState => ({
               isSaveVideo: !prevState.isSaveVideo,
-              savedVideos: savedVideosList,
             }))
             addVideoItem({...videoList, isLike, isDislike})
           }
-
-          const btnText = isSaveVideo ? 'Saved' : 'Save'
 
           return (
             <div className="video-item-container">
@@ -144,7 +128,7 @@ class VideoDetails extends Component {
                     height="520px"
                   />
                 </div>
-                <Title>{title}</Title>
+                <Title mode={isDark}>{title}</Title>
                 <div className="details-container">
                   <div className="view-container">
                     <p className="views">{viewCount} views </p>
@@ -159,7 +143,7 @@ class VideoDetails extends Component {
                         like={isLike}
                       >
                         <BiLike className="like-icon" />
-                        <p className="like-icon-name">Like</p>
+                        Like
                       </LikeAndDislikeButton>
                     </div>
                     <div className="dislike-container">
@@ -169,18 +153,29 @@ class VideoDetails extends Component {
                         like={isDislike}
                       >
                         <BiDislike className="like-icon" />
-                        <p className="like-icon-name">Dislike</p>
+                        Dislike
                       </LikeAndDislikeButton>
                     </div>
                     <div className="dislike-container">
-                      <LikeAndDislikeButton
-                        type="button"
-                        onClick={onSaveVideoButton}
-                        like={isSaveVideo}
-                      >
-                        <MdPlaylistAdd className="like-icon" />
-                        <p className="like-icon-name">{btnText}</p>
-                      </LikeAndDislikeButton>
+                      {isSaveVideo && (
+                        <button
+                          type="button"
+                          onClick={onSaveVideoButton}
+                          className="save-btn"
+                        >
+                          <MdPlaylistAdd /> Saved
+                        </button>
+                      )}
+                      {!isSaveVideo && (
+                        <button
+                          type="button"
+                          className="not-save-btn"
+                          onClick={onSaveVideoButton}
+                        >
+                          <MdPlaylistAdd />
+                          Save
+                        </button>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -188,15 +183,15 @@ class VideoDetails extends Component {
                 <div className="subscriber-container">
                   <img
                     src={profileImageUrl}
-                    alt="profile"
+                    alt="channel logo"
                     className="profile"
                   />
                   <div>
-                    <Title>{name}</Title>
+                    <Title mode={isDark}>{name}</Title>
                     <p className="channel-name">
                       {subscriberCount} subscribers
                     </p>
-                    <Title>{description}</Title>
+                    <Title mode={isDark}>{description}</Title>
                   </div>
                 </div>
               </div>
@@ -207,16 +202,24 @@ class VideoDetails extends Component {
     )
   }
 
-  onRenderFailurePage = () => (
+  onClickRetry = () => {
+    this.getVideoItemDetails()
+  }
+
+  onRenderFailurePage = isDark => (
     <div className="failure-container">
       <img
-        src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png"
+        src={
+          isDark === 'true'
+            ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png'
+            : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png'
+        }
         alt="failure view"
         className="failure-view"
       />
       <h1 className="oops-error">Oops! Something Went Wrong</h1>
       <p className="failure-error-msg">
-        We cannot seem to find the page you are looking for.
+        We are having some trouble to complete your request. Please try again.
       </p>
       <button type="button" className="retry-btn" onClick={this.onClickRetry}>
         Retry
@@ -224,16 +227,16 @@ class VideoDetails extends Component {
     </div>
   )
 
-  onRenderVideoPlay = () => {
+  onRenderVideoPlay = isDark => {
     const {apiStatus} = this.state
 
     switch (apiStatus) {
       case apiStatusConstraints.inprogress:
         return this.onRenderInprogress()
       case apiStatusConstraints.success:
-        return this.onRenderSuccessVideo()
+        return this.onRenderSuccessVideo(isDark)
       case apiStatusConstraints.failure:
-        return this.onRenderFailurePage()
+        return this.onRenderFailurePage(isDark)
       default:
         return null
     }
@@ -246,13 +249,13 @@ class VideoDetails extends Component {
           const {isDark} = value
 
           return (
-            <div className="video-page-container">
-              <Navbar />
-              <ReactHomeContainer mode={isDark}>
+            <ReactHomeContainer mode={isDark} data-testid="videoItemDetails">
+              <Header />
+              <div className="vide-details-container">
                 <SideBar />
-                {this.onRenderVideoPlay()}
-              </ReactHomeContainer>
-            </div>
+                {this.onRenderVideoPlay(isDark)}
+              </div>
+            </ReactHomeContainer>
           )
         }}
       </ThemeContext.Consumer>

@@ -9,7 +9,9 @@
   font-size: 35px;
   color: #ff0b37;
 }
-
+.gaming-container {
+  display: flex;
+}
 .retry-btn {
   cursor: pointer;
   background-color: #2563eb;

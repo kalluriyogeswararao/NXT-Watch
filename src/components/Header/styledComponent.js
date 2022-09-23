@@ -40,12 +40,7 @@ export const CustomButton = styled.button`
   outline: none;
   margin-left: 20px;
   margin-right: 20px;
-
   font-weight: 550;
-  display: none;
-  @media screen and (min-width: 768px) {
-    display: block;
-  }
 `
 export const ThemeButton = styled.button`
   color: ${props => (props.mode === 'true' ? '#ffffff' : '#212121')};
@@ -57,23 +52,4 @@ export const ThemeButton = styled.button`
   margin-right: 30px;
   margin-top: 10px;
   cursor: pointer;
-`
-export const Button = styled.button`
-  height: 32px;
-  font-family: 'Roboto';
-  font-size: 15px;
-  width: 86px;
-  border-radius: 3px;
-  background-color: ${props => props.bgColor};
-  border: 1px solid ${props => props.border};
-  color: ${props => props.color};
-  cursor: pointer;
-  outline: none;
-  margin-left: 20px;
-  margin-right: 20px;
-  font-weight: 550;
-  display: none;
-  @media screen and (min-width: 768px) {
-    display: block;
-  }
 `

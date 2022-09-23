@@ -23,27 +23,33 @@ const SavedVideoItem = props => {
         const date = formatDistanceToNow(new Date(publishedAt))
 
         return (
-          <VideosContainer mode={isDark}>
-            <Link to={`/videos/${id}`} className="trend-link">
-              <li className="trend-video">
-                <img
-                  src={thumbnailUrl}
-                  alt={title}
-                  className="trend-video-image"
-                />
-                <div className="trend-profile-container">
-                  <TitlePara mode={isDark}>{title}</TitlePara>
-                  <div>
-                    <p className="trend-channel-name">{name}</p>
-                    <div className="trend-views-count-container">
-                      <p className="trend-channel-name">{viewCount}</p>
-                      <p className="trend-channel-name">{date}</p>
+          <li>
+            <VideosContainer mode={isDark}>
+              <Link to={`/videos/${id}`} className="trend-link">
+                <div className="trend-video">
+                  <img
+                    src={thumbnailUrl}
+                    alt="video thumbnail"
+                    className="trend-video-image"
+                  />
+                  <div className="trend-profile-container">
+                    <TitlePara mode={isDark}>{title}</TitlePara>
+                    <div>
+                      <TitlePara mode={isDark}>{name}</TitlePara>
+                      <div className="trend-views-count-container">
+                        <TitlePara className="trend-channel-name" mode={isDark}>
+                          {viewCount}
+                        </TitlePara>
+                        <TitlePara className="trend-channel-name" mode={isDark}>
+                          {date}
+                        </TitlePara>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </li>
-            </Link>
-          </VideosContainer>
+              </Link>
+            </VideosContainer>
+          </li>
         )
       }}
     </ThemeContext.Consumer>

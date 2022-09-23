@@ -4,7 +4,7 @@ import Loader from 'react-loader-spinner'
 import {ImCross} from 'react-icons/im'
 import Cookies from 'js-cookie'
 import SideBar from '../SideBar'
-import Navbar from '../Navbar'
+import Header from '../Header'
 import VideoItem from '../VideoItem'
 import ThemeContext from '../../context/ThemeContext'
 import {
@@ -13,6 +13,7 @@ import {
   Input,
   FailureHeading,
   FailurePara,
+  BannerContainer,
 } from './styledComponent'
 import './index.css'
 
@@ -28,6 +29,7 @@ class Home extends Component {
     videoList: [],
     isPrime: true,
     apiStatus: apiStatusConstraints.initial,
+    searchInput: '',
   }
 
   componentDidMount() {
@@ -36,8 +38,9 @@ class Home extends Component {
 
   onRenderVideos = async () => {
     this.setState({apiStatus: apiStatusConstraints.inprogress})
+    const {searchInput} = this.state
     const jwtToken = Cookies.get('jwt_token')
-    const url = `https://apis.ccbp.in/videos/all?search=`
+    const url = `https://apis.ccbp.in/videos/all?search=${searchInput}`
     const options = {
       method: 'GET',
       headers: {
@@ -68,6 +71,14 @@ class Home extends Component {
     }
   }
 
+  onChangeSearchInput = event => {
+    this.setState({searchInput: event.target.value})
+  }
+
+  searchResults = () => {
+    this.onRenderVideos()
+  }
+
   onClickRetry = () => {
     this.onRenderVideos()
   }
@@ -77,35 +88,35 @@ class Home extends Component {
   }
 
   renderPrimePoster = () => (
-    <div className="prime-poster-container">
+    <BannerContainer data-testid="banner">
       <button
         className="cross-btn"
         type="button"
         onClick={this.onClickRemovePrime}
+        data-testid="close"
       >
         <ImCross className="cross-icon" />
       </button>
       <img
         src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
-        alt="website logo"
+        alt="nxt watch logo"
         className="web-logo"
       />
       <p className="para">Buy Nxt Watch Premium prepaid plans with UPI</p>
       <button type="button" className="get-it-now-btn">
         GET IT NOW
       </button>
-    </div>
+    </BannerContainer>
   )
 
   onRenderInprogress = () => (
-    <div className="loader-container">
+    <div className="loader-container" data-testid="loader">
       <Loader type="ThreeDots" color="#ffffff" height="40" width="40" />
     </div>
   )
 
-  onRenderDisplayVideos = () => {
+  renderVideos = () => {
     const {videoList} = this.state
-
     return (
       <ul className="all-videos">
         {videoList.map(video => (
@@ -113,6 +124,32 @@ class Home extends Component {
         ))}
       </ul>
     )
+  }
+
+  noSearchResults = isDark => (
+    <div className="no-videos-container">
+      <img
+        src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png"
+        alt="no videos"
+        className="no-videos"
+      />
+      <FailureHeading mode={isDark}>No Search Results Found</FailureHeading>
+      <FailurePara mode={isDark}>
+        Try different key words or remove search filter
+      </FailurePara>
+      <button type="button" className="retry-btn" onClick={this.onClickRetry}>
+        Retry
+      </button>
+    </div>
+  )
+
+  onRenderDisplayVideos = isDark => {
+    const {videoList} = this.state
+
+    if (videoList.length > 0) {
+      return this.renderVideos()
+    }
+    return this.noSearchResults(isDark)
   }
 
   onRenderFailureStatus = isDark => (
@@ -143,7 +180,7 @@ class Home extends Component {
       case apiStatusConstraints.inprogress:
         return this.onRenderInprogress()
       case apiStatusConstraints.success:
-        return this.onRenderDisplayVideos()
+        return this.onRenderDisplayVideos(isDark)
       case apiStatusConstraints.failure:
         return this.onRenderFailureStatus(isDark)
       default:
@@ -160,9 +197,9 @@ class Home extends Component {
           const {isDark} = value
 
           return (
-            <>
-              <Navbar />
-              <HomeContainer mode={isDark}>
+            <HomeContainer mode={isDark} data-testid="home">
+              <Header />
+              <div className="home-container">
                 <SideBar />
                 <VideosContainer mode={isDark}>
                   {isPrime && this.renderPrimePoster()}
@@ -172,8 +209,14 @@ class Home extends Component {
                       type="search"
                       className="input"
                       placeholder="Search"
+                      onChange={this.onChangeSearchInput}
                     />
-                    <button type="button" className="search-button">
+                    <button
+                      type="button"
+                      className="search-button"
+                      onClick={this.searchResults}
+                      data-testid="searchButton"
+                    >
                       <BiSearch className="search-icon" />
                     </button>
                   </div>
@@ -182,8 +225,8 @@ class Home extends Component {
                     {this.onRenderAllVideos(isDark)}
                   </div>
                 </VideosContainer>
-              </HomeContainer>
-            </>
+              </div>
+            </HomeContainer>
           )
         }}
       </ThemeContext.Consumer>

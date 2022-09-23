@@ -21,26 +21,32 @@ class VideoItem extends Component {
     const {name, profileImageUrl} = channel
     const date = formatDistanceToNow(new Date(publishedAt))
     return (
-      <Link to={`/videos/${id}`} className="link">
-        <li className="video">
-          <img src={thumbnailUrl} alt={title} className="video-image" />
-          <div className="profile-container">
+      <li>
+        <Link to={`/videos/${id}`} className="link">
+          <div className="video">
             <img
-              src={profileImageUrl}
-              alt={profileImageUrl}
-              className="profileImage"
+              src={thumbnailUrl}
+              alt="video thumbnail"
+              className="video-image"
             />
-            <div>
-              <TitlePara mode={isDark}>{title}</TitlePara>
-              <p className="channel-name">{name}</p>
-              <div className="views-count-container">
-                <p className="channel-name">{viewCount}</p>
-                <p className="channel-name">{date}</p>
+            <div className="profile-container">
+              <img
+                src={profileImageUrl}
+                alt="channel logo"
+                className="profileImage"
+              />
+              <div>
+                <TitlePara mode={isDark}>{title}</TitlePara>
+                <p className="channel-name">{name}</p>
+                <div className="views-count-container">
+                  <p className="channel-name">{viewCount}</p>
+                  <p className="channel-name">{date}</p>
+                </div>
               </div>
             </div>
           </div>
-        </li>
-      </Link>
+        </Link>
+      </li>
     )
   }
 

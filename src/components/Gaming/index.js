@@ -3,7 +3,7 @@ import Loader from 'react-loader-spinner'
 import {IoLogoGameControllerB} from 'react-icons/io'
 import Cookies from 'js-cookie'
 import SideBar from '../SideBar'
-import Navbar from '../Navbar'
+import Header from '../Header'
 import GamingVideoItem from '../GamingVideoItem'
 import {
   HomeContainer,
@@ -63,10 +63,14 @@ class Gaming extends Component {
   }
 
   onRenderInprogress = () => (
-    <div className="loader-container">
+    <div className="loader-container" data-testid="loader">
       <Loader type="ThreeDots" color="#ffffff" height="40" width="40" />
     </div>
   )
+
+  onClickRetry = () => {
+    this.onRenderVideos()
+  }
 
   onRenderDisplayVideos = isDark => {
     const {videoList} = this.state
@@ -133,13 +137,13 @@ class Gaming extends Component {
           const {isDark} = value
 
           return (
-            <>
-              <Navbar />
-              <HomeContainer mode={isDark}>
+            <HomeContainer mode={isDark} data-testid="gaming">
+              <Header />
+              <div className="gaming-container">
                 <SideBar />
                 {this.onRenderAllVideos(isDark)}
-              </HomeContainer>
-            </>
+              </div>
+            </HomeContainer>
           )
         }}
       </ThemeContext.Consumer>

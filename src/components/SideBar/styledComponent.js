@@ -13,7 +13,7 @@ export const SideBarContainer = styled.div`
   }
 `
 
-export const NavLinks = styled.h1`
+export const NavLinks = styled.p`
   font-family: 'Roboto';
   font-size: 16px;
   color: ${props => (props.mode === 'true' ? '#f8fafc' : '#212121')};

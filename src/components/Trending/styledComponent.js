@@ -1,16 +1,17 @@
 import styled from 'styled-components'
 
 export const HomeContainer = styled.div`
-  display: flex;
   min-height: 100vh;
   width: 100vw;
-  background-color: ${props => (props.mode === 'true' ? '#000000' : '#f8fafc')};
+  background-color: ${props =>
+    props.mode === 'true' ? '#0f0f0f' : '#f9f9f9 '};
 `
 export const VideosContainer = styled.div`
   padding-left: 10px;
   padding-top: 10px;
   width: 100%;
-  background-color: ${props => (props.mode === 'true' ? '#000000' : '#f8fafc')};
+  background-color: ${props =>
+    props.mode === 'true' ? '#0f0f0f' : '#f9f9f9 '};
 `
 export const TrendContainer = styled.div`
   padding: 20px;

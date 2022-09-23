@@ -1,16 +1,17 @@
 import styled from 'styled-components'
 
 export const HomeContainer = styled.div`
-  display: flex;
   min-height: 100vh;
-  background-color: ${props => (props.mode === 'true' ? '#000000' : '#f8fafc')};
+  background-color: ${props =>
+    props.mode === 'true' ? '#0f0f0f' : '#f9f9f9 '};
 `
 
 export const GameContainer = styled.div`
   padding: 20px;
   display: flex;
   align-items: center;
-  background-color: ${props => (props.mode === 'true' ? '#212121' : '#f8fafc')};
+  background-color: ${props =>
+    props.mode === 'true' ? '#212121' : '#f9f9f9 '};
 `
 export const GameHeading = styled.h1`
   color: ${props => (props.mode === 'true' ? '#f8fafc' : '#212121')};

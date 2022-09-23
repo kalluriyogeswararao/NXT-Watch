@@ -9,7 +9,7 @@ import {
 
 import ThemeContext from '../../context/ThemeContext'
 import SideBar from '../SideBar'
-import Navbar from '../Navbar'
+import Header from '../Header'
 import SavedVideoItem from '../SavedVideoItem'
 import './index.css'
 
@@ -39,7 +39,7 @@ const SavedVideos = () => (
           <div className="no-saved-videos-container">
             <img
               src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-saved-videos-img.png"
-              alt="no-saved-videos"
+              alt="no saved videos"
               className="no-saved-videos"
             />
             <NoSavedVideos mode={isDark}>No Saved Videos Found</NoSavedVideos>
@@ -58,10 +58,12 @@ const SavedVideos = () => (
 
         return (
           <>
-            <Navbar />
-            <HomeContainer mode={isDark}>
-              <SideBar />
-              <div className="saved-videos-page">{onRenderSavedVideos()}</div>
+            <HomeContainer mode={isDark} data-testid="savedVideos">
+              <Header />
+              <div className="saved-videos-container">
+                <SideBar />
+                <div className="saved-videos-page">{onRenderSavedVideos()}</div>
+              </div>
             </HomeContainer>
           </>
         )

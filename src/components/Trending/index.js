@@ -3,7 +3,7 @@ import Loader from 'react-loader-spinner'
 import {HiFire} from 'react-icons/hi'
 import Cookies from 'js-cookie'
 import SideBar from '../SideBar'
-import Navbar from '../Navbar'
+import Header from '../Header'
 import TrendingVideoItem from '../TrendingVideoItem'
 import {
   HomeContainer,
@@ -68,7 +68,7 @@ class Trending extends Component {
   }
 
   onRenderInprogress = () => (
-    <div className="loader-container">
+    <div className="loader-container" data-testid="loader">
       <Loader type="ThreeDots" color="#ffffff" height="40" width="40" />
     </div>
   )
@@ -93,6 +93,10 @@ class Trending extends Component {
         </div>
       </>
     )
+  }
+
+  onClickRetry = () => {
+    this.onRenderVideos()
   }
 
   onRenderFailureStatus = isDark => (
@@ -138,13 +142,13 @@ class Trending extends Component {
           const {isDark} = value
 
           return (
-            <>
-              <Navbar />
-              <HomeContainer mode={isDark}>
+            <HomeContainer mode={isDark} data-testid="trending">
+              <Header />
+              <div className="trending-container">
                 <SideBar />
                 {this.onRenderAllVideos(isDark)}
-              </HomeContainer>
-            </>
+              </div>
+            </HomeContainer>
           )
         }}
       </ThemeContext.Consumer>

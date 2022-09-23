@@ -85,3 +85,35 @@
 .small-screen-container {
   display: none;
 }
+
+.cancel-button {
+  background-color: transparent;
+  border: 1px solid #ffffff;
+  height: 32px;
+  font-family: 'Roboto';
+  font-size: 15px;
+  width: 86px;
+  border-radius: 3px;
+  cursor: pointer;
+  outline: none;
+  margin-left: 20px;
+  margin-right: 20px;
+  font-weight: 550;
+  color: #ffffff;
+}
+
+.confirm-button {
+  background-color: #2563eb;
+  border: none;
+  height: 32px;
+  font-family: 'Roboto';
+  font-size: 15px;
+  width: 86px;
+  border-radius: 3px;
+  cursor: pointer;
+  outline: none;
+  margin-left: 20px;
+  margin-right: 20px;
+  font-weight: 550;
+  color: #ffffff;
+}
