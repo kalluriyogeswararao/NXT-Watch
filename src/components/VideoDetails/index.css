@@ -144,3 +144,38 @@
   align-items: center;
   color: #64748b;
 }
+
+.player {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .large-page-player {
+    display: none;
+  }
+  .player {
+    display: block;
+  }
+  .views {
+    font-size: 18px;
+    text-align: center;
+  }
+  .details-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .like-main-container {
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
+  .save-btn {
+    font-size: 25px;
+  }
+  .not-saved-btn {
+    font-size: 25px;
+  }
+  .media {
+    font-size: 25px;
+    margin-right: 5px;
+  }
+}

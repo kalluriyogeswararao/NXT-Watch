@@ -5,8 +5,8 @@ export const VideosContainer = styled.li`
   background-color: ${props => (props.mode === 'true' ? '#0f0f0f' : '#f9f9f9')};
 `
 export const TitlePara = styled.p`
-  font-size: 18px;
+  font-size: 22px;
   color: ${props => (props.mode === 'true' ? '#f8fafc' : '#000000')};
   font-family: 'roboto';
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 `

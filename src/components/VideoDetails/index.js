@@ -125,7 +125,8 @@ class VideoDetails extends Component {
                     controls
                     muted
                     width="99%"
-                    height="520px"
+                    height="560px"
+                    className="large-page-player"
                   />
                 </div>
                 <Title mode={isDark}>{title}</Title>
@@ -157,25 +158,14 @@ class VideoDetails extends Component {
                       </LikeAndDislikeButton>
                     </div>
                     <div className="dislike-container">
-                      {isSaveVideo && (
-                        <button
-                          type="button"
-                          onClick={onSaveVideoButton}
-                          className="save-btn"
-                        >
-                          <MdPlaylistAdd /> Saved
-                        </button>
-                      )}
-                      {!isSaveVideo && (
-                        <button
-                          type="button"
-                          className="not-save-btn"
-                          onClick={onSaveVideoButton}
-                        >
-                          <MdPlaylistAdd />
-                          Save
-                        </button>
-                      )}
+                      <button
+                        type="button"
+                        onClick={onSaveVideoButton}
+                        className={isSaveVideo ? 'save-btn' : 'not-save-btn'}
+                      >
+                        <MdPlaylistAdd className="media" />
+                        {isSaveVideo ? 'Saved' : 'Save'}
+                      </button>
                     </div>
                   </div>
                 </div>

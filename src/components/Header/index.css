@@ -20,9 +20,9 @@
   border: none;
   outline: none;
   font-size: 30px;
-  color: #ffffff;
-  margin-left: 20px;
-  margin-right: 20px;
+  color: #64748b;
+  margin-left: 5px;
+  margin-right: 5px;
   cursor: pointer;
   display: none;
 }
@@ -33,6 +33,7 @@
   }
   .menu-icon {
     display: block;
+    font-size: 25px;
   }
 }
 
@@ -58,9 +59,9 @@
   margin-left: 15px;
 }
 
-.profile {
-  width: 20px;
-  height: 20px;
+.profile-logo {
+  width: 35px;
+  height: 35px;
 }
 .sun-icon {
   font-size: 30px;
@@ -72,7 +73,7 @@
     width: 125px;
     margin-left: 10px;
   }
-  .profile {
+  .profile-logo {
     display: none;
   }
   .sun-icon {

@@ -56,7 +56,7 @@ const Header = props => {
               <img
                 src="https://assets.ccbp.in/frontend/react-js/nxt-watch-profile-img.png"
                 alt="profile"
-                className="profile"
+                className="profile-logo"
               />
               <GiHamburgerMenu className="menu-icon" />
 

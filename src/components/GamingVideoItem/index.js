@@ -23,13 +23,9 @@ const GamingVideoItem = props => {
                 />
                 <div className="game-profile-container">
                   <TitlePara mode={isDark}>{title}</TitlePara>
-                  <div>
-                    <div className="game-views-count-container">
-                      <p className="game-channel-name">
-                        {viewCount} Watching Worldwide
-                      </p>
-                    </div>
-                  </div>
+                  <p className="game-channel-name">
+                    {viewCount} Watching Worldwide
+                  </p>
                 </div>
               </div>
             </Link>

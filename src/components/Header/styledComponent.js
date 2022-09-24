@@ -9,6 +9,7 @@ export const NavbarContainer = styled.div`
   width: 100vw;
   @media screen and (max-width: 768px) {
     width: 100%;
+    padding: 15px;
   }
 `
 
@@ -41,6 +42,13 @@ export const CustomButton = styled.button`
   margin-left: 20px;
   margin-right: 20px;
   font-weight: 550;
+  @media screen and (max-width: 768px) {
+    height: 28px;
+    width: 60px;
+    font-size: 12px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
 `
 export const ThemeButton = styled.button`
   color: ${props => (props.mode === 'true' ? '#ffffff' : '#212121')};
@@ -52,4 +60,9 @@ export const ThemeButton = styled.button`
   margin-right: 30px;
   margin-top: 10px;
   cursor: pointer;
+  @media screen and (max-width: 768px) {
+    margin-right: 15px;
+    font-size: 25px;
+    margin-top: 7px;
+  }
 `

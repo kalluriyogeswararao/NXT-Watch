@@ -37,7 +37,7 @@ class VideoItem extends Component {
               />
               <div>
                 <TitlePara mode={isDark}>{title}</TitlePara>
-                <p className="channel-name">{name}</p>
+                <p className="channel-name-h">{name}</p>
                 <div className="views-count-container">
                   <p className="channel-name">{viewCount}</p>
                   <p className="channel-name">{date}</p>

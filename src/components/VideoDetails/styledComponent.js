@@ -18,7 +18,8 @@ export const LikeAndDislikeButton = styled.button`
   color: ${props => (props.like ? '#2563eb' : '#64748b')};
   display: flex;
   align-items: center;
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 550;
   font-family: 'roboto';
+  margin-right: 5px;
 `

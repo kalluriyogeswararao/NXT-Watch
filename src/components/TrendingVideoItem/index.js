@@ -25,12 +25,12 @@ const TrendingVideoItem = props => {
         return (
           <li>
             <VideosContainer mode={isDark}>
-              <Link to={`/videos/${id}`} className="trend-link">
+              <Link to={`/videos/${id}`} className="trend-link-t">
                 <div className="trend-video">
                   <img
                     src={thumbnailUrl}
                     alt="video thumbnail"
-                    className="trend-video-image"
+                    className="trend-video-image-t"
                   />
                   <div className="trend-profile-container">
                     <TitlePara mode={isDark}>{title}</TitlePara>

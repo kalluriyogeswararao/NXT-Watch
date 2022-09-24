@@ -4,13 +4,13 @@
   display: flex;
 }
 
-.trend-link {
+.trend-link-t {
   text-decoration: none;
   width: 300px;
   margin-right: 20px;
 }
 
-.trend-video-image {
+.trend-video-image-t {
   width: 300px;
   height: 170px;
   margin-right: 20px;
@@ -29,14 +29,14 @@
 }
 
 .trend-title {
-  font-size: 12px;
+  font-size: 15px;
   color: #ffffff;
   font-family: 'roboto';
   line-height: 1.5;
 }
 
 .trend-channel-name {
-  font-size: 13px;
+  font-size: 15px;
   color: #64748b;
   font-family: 'roboto';
   line-height: 1.5;
@@ -52,5 +52,13 @@
   .trend-video {
     display: flex;
     flex-direction: column;
+  }
+
+  .trend-link-t {
+    text-decoration: none;
+  }
+  .trend-video-image-t {
+    width: 100%;
+    height: 200px;
   }
 }

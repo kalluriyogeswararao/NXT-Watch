@@ -41,6 +41,8 @@
 .loader-container {
   display: flex;
   justify-content: center;
+  height: 100vh;
+  align-items: center;
   width: 100%;
 }
 
@@ -48,4 +50,11 @@
   display: flex;
   flex-wrap: wrap;
   padding: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .gaming-all-videos {
+    width: 100%;
+    list-style-type: none;
+  }
 }

@@ -54,3 +54,10 @@
     flex-direction: column;
   }
 }
+
+.trend-channel-title {
+  font-size: 18px;
+  font-family: 'roboto';
+  margin-bottom: 20px;
+  color: #64748b;
+}

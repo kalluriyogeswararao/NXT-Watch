@@ -54,4 +54,14 @@
     display: flex;
     flex-direction: column;
   }
+  .game-link {
+    width: 100%;
+  }
+  .game-video-image {
+    width: 100%;
+    height: 450px;
+  }
+  .game-channel-name {
+    font-size: 15px;
+  }
 }

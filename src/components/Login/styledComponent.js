@@ -28,7 +28,7 @@ export const FormContainer = styled.form`
 `
 export const ImageLogo = styled.img`
   width: 200px;
-  margin-bottom: 55px;
+  margin-bottom: 50px;
 `
 export const Label = styled.label`
   font-family: 'Roboto';
@@ -51,12 +51,12 @@ export const LabelAndInputContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-bottom: 22px;
+  margin-bottom: 20px;
 `
 export const CheckBoxContainer = styled.div`
   display: flex;
   width: 100%;
-  margin-bottom: 22px;
+  margin-bottom: 20px;
   align-items: center;
 `
 export const LoginButton = styled.button`
